@@ -29,6 +29,7 @@ services:
     networks:
       - db-network
   pgadmin:
+    profiles: ["tools"]
     container_name: pgadmin_container
     image: dpage/pgadmin4:${PGADMIN_VERSION}
     environment:
@@ -48,6 +49,7 @@ services:
     networks:
       - db-network
   postgres_exporter:
+    profiles: ["monitoring"]
     container_name: exporter_container
     image: prometheuscommunity/postgres-exporter:${POSTGRES_EXPORTER_VERSION}
     environment:
@@ -68,6 +70,7 @@ services:
     networks:
       - db-network
   prometheus:
+    profiles: ["monitoring"]
     image: prom/prometheus:${PROMETHEUS_VERSION}
     container_name: prometheus
     volumes:
@@ -86,6 +89,7 @@ services:
     networks:
       - db-network
   grafana:
+    profiles: ["monitoring"]
     image: grafana/grafana:${GRAFANA_VERSION}
     container_name: grafana
     environment:
