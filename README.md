@@ -9,3 +9,36 @@
 Оптимизированные настройки PostgreSQL, изоляция данных на хосте, гибкое управление через профили и поддержка множественных инстансов.
 
 ---
+
+## 📦 Требования
+
+- **Docker Engine** версии 20.10 или новее
+- **Docker Compose V2** (встроен в Docker Desktop, либо установлен отдельно)
+- **Git** (для клонирования)
+
+---
+
+## ⚡ Быстрый старт
+
+1. **Клонируйте репозиторий:**
+   ```bash
+   git clone https://github.com/rda83/postgres-dev-stack.git
+   cd postgres-dev-stack
+
+2. **Создайте файл .env из шаблона и отредактируйте его:** 
+cp .env.example .env
+# Откройте .env в редакторе и укажите свои значения (пароли, пути к данным)
+
+2. **Создайте директории для данных (укажите абсолютные пути из .env):** 
+mkdir -p /absolute/path/to/postgres/data
+mkdir -p /absolute/path/to/pgadmin/data
+mkdir -p /absolute/path/to/prometheus/data
+mkdir -p /absolute/path/to/grafana/data
+
+3. **Запустите стек (по умолчанию только PostgreSQL):**
+docker compose up -d
+
+4. **Проверьте статус:**
+docker compose ps
+
+Теперь PostgreSQL доступен на порту, указанном в .env (по умолчанию 5432).
