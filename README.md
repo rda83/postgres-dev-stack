@@ -43,4 +43,9 @@
 5. **Проверьте статус:**
     - docker compose ps
 
-Теперь PostgreSQL доступен на порту, указанном в .env (по умолчанию 5432).
+Теперь PostgreSQL доступен на порту, указанном в .env (по умолчанию 
+5432).
+
+docker compose up  -d
+docker compose --profile tools up -d
+fail: docker compose --profile tools up -d
