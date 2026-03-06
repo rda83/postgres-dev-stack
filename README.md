@@ -26,19 +26,21 @@
    cd postgres-dev-stack
 
 2. **Создайте файл .env из шаблона и отредактируйте его:** 
-cp .env.example .env
-# Откройте .env в редакторе и укажите свои значения (пароли, пути к данным)
+    - cp .env.example .env
+    - Откройте .env в редакторе и укажите свои значения (параметры, пути к данным и т.д.)
 
-2. **Создайте директории для данных (укажите абсолютные пути из .env):** 
-mkdir -p /absolute/path/to/postgres/data
-mkdir -p /absolute/path/to/pgadmin/data
-mkdir -p /absolute/path/to/prometheus/data
-mkdir -p /absolute/path/to/grafana/data
+3. **Создайте директории для данных (укажите абсолютные пути из .env):**
+    ```bash 
+    mkdir -p /absolute/path/to/postgres/data
+    mkdir -p /absolute/path/to/pgadmin/data
+    mkdir -p /absolute/path/to/prometheus/data
+    mkdir -p /absolute/path/to/grafana/data
 
-3. **Запустите стек (по умолчанию только PostgreSQL):**
-docker compose up -d
+4. **Запустите стек (по умолчанию только PostgreSQL):**
+    ```bash
+    docker compose up -d
 
-4. **Проверьте статус:**
-docker compose ps
+5. **Проверьте статус:**
+    - docker compose ps
 
 Теперь PostgreSQL доступен на порту, указанном в .env (по умолчанию 5432).
