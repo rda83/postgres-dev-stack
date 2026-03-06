@@ -1,10 +1,9 @@
 services:
   postgres-dev:
-    container_name: postgres-dev
+    container_name: postgres-dev-${INSTANCE_SUFFIX}
     image: postgres:${POSTGRES_VERSION}
     command:
       - "postgres"
-      - "-c"
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
@@ -30,7 +29,7 @@ services:
       - db-network
   pgadmin:
     profiles: ["tools"]
-    container_name: pgadmin_container
+    container_name: pgadmin_container-${INSTANCE_SUFFIX}
     image: dpage/pgadmin4:${PGADMIN_VERSION}
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
@@ -50,7 +49,7 @@ services:
       - db-network
   postgres_exporter:
     profiles: ["monitoring"]
-    container_name: exporter_container
+    container_name: exporter_container-${INSTANCE_SUFFIX}
     image: prometheuscommunity/postgres-exporter:${POSTGRES_EXPORTER_VERSION}
     environment:
       DATA_SOURCE_URI: "postgres-dev:5432/${POSTGRES_DB}?sslmode=disable"
@@ -72,7 +71,7 @@ services:
   prometheus:
     profiles: ["monitoring"]
     image: prom/prometheus:${PROMETHEUS_VERSION}
-    container_name: prometheus
+    container_name: prometheus-${INSTANCE_SUFFIX}
     volumes:
       - ./prometheus:/etc/prometheus
       - prometheus_data:/prometheus
@@ -91,7 +90,7 @@ services:
   grafana:
     profiles: ["monitoring"]
     image: grafana/grafana:${GRAFANA_VERSION}
-    container_name: grafana
+    container_name: grafana-${INSTANCE_SUFFIX}
     environment:
       - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER}
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD}
